@@ -30,7 +30,7 @@
 주의사항, 우려되는 내용들도 함께 기재 권장.
 미완료 사항은 GitHub Issue를 생성하여 명시.
 
-refs [<Milestone명>/<브랜치명>-<이슈번호>]   ← Footer (필수)
+close #<이슈번호>                             ← Footer (필수)
 ```
 
 ---
@@ -72,10 +72,18 @@ refs [<Milestone명>/<브랜치명>-<이슈번호>]   ← Footer (필수)
 ## Footer (꼬리말)
 
 ```
-refs [<Milestone명>/<브랜치명>-<이슈번호>]
+<키워드> #<이슈번호>
 ```
 
-- Milestone이 없는 경우: `refs [<브랜치명>-<이슈번호>]` (예: `refs [dev-12]`)
+PR 머지 시 해당 Issue가 자동으로 닫힙니다. 작업 성격에 따라 아래 키워드를 선택합니다.
+
+| 키워드                          | 사용 상황                          |
+|---------------------------------|------------------------------------|
+| `close` / `closes` / `closed`   | 기능 추가, 문서, 설정 등 일반 작업  |
+| `fix` / `fixes` / `fixed`       | 버그 수정 (`fix` 타입 커밋)         |
+| `resolve` / `resolves` / `resolved` | 논의·개선 요청·질문 등 해결      |
+
+> 세 키워드 모두 동일하게 Issue를 닫으며, 의미 전달 목적으로 구분합니다.
 
 ---
 
@@ -91,5 +99,5 @@ fix: 주소록 정렬할 때 여러 자리 숫자에 대응할 수 있도록 com
 * contact_comparator.py : 위 방법대로 정의한 custom comparator 구현
 성능 검증은 추후 예정
 
-refs [common/dev-12]
+fix #12
 ```
