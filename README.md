@@ -22,8 +22,10 @@ GitHub Issue 기반 협업 워크플로우를 빠르게 적용할 수 있는 스
 ├── .github/
 │   ├── ISSUE_TEMPLATE/
 │   │   ├── config.yml          # 빈 이슈 생성 비활성화
+│   │   ├── FEATURE.md          # 기능 추가 이슈 템플릿
+│   │   ├── BUG.md              # 버그 수정 이슈 템플릿
+│   │   ├── REFACTOR.md         # 리팩토링 이슈 템플릿
 │   │   ├── SETUP.md            # 프로젝트 초기 세팅 이슈 템플릿
-│   │   ├── COMMON_FEATURE.md   # 공통 기능 추가 이슈 템플릿
 │   │   └── HOTFIX.md           # 긴급 버그 수정 이슈 템플릿
 │   ├── workflows/
 │   │   └── create-branch-on-issue.yml  # Issue Assign 시 브랜치 자동 생성
@@ -89,13 +91,10 @@ dev ◄─── feature/dev-<n>    dev
 
 ### 배포 (dev → main)
 
-```bash
-git checkout main
-git merge dev --ff-only
-git tag -a v1.0.0 -m "Release version 1.0.0"
-git push origin main
-git push origin v1.0.0
-```
+1. **PR 생성** — `dev` → `main` PR을 생성합니다. (제목: `release: v1.0.0`)
+2. **리뷰 및 승인** — 배포 범위와 변경사항을 최종 확인합니다.
+3. **Rebase Merge** — GitHub UI에서 **"Rebase and merge"** 로 병합합니다.
+4. **Git Tag** — 머지 후 배포 버전을 태그로 기록합니다.
 
 ### 긴급 버그 수정 (hotfix)
 
@@ -113,8 +112,8 @@ Issue를 본인에게 Assign하면 `issue-branch.yml` 규칙에 따라 브랜치
 
 | label | 생성 브랜치 |
 |-------|------------|
-| `enhancement`, `common`, `setup` | `feature/dev-<이슈번호>` |
-| `bug`, `hotfix` | `hotfix/main-<이슈번호>` |
+| `enhancement`, `setup`, `bug`, `refactor` | `feature/dev-<이슈번호>` |
+| `hotfix` | `hotfix/main-<이슈번호>` |
 
 ---
 
