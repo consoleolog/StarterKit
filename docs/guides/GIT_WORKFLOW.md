@@ -76,7 +76,7 @@ PR은 브랜치의 **커밋 1개**를 그대로 반영하므로, 커밋의 heade
 
 - **PR 제목**: 커밋의 header (예: `feat: 로그인 API 구현`)
 - **body**: 커밋의 body — 변경 이유 및 내용
-- **footer**: 커밋의 footer — Issue 식별자, `<Milestone명>/<브랜치명>-<이슈번호>` 형식으로 작성 (예: `common/dev-12`)
+- **footer**: 커밋의 footer — `close`·`fix`·`resolve` 중 작업 성격에 맞는 키워드로 작성 (예: `close #12`), PR 머지 시 Issue 자동 종료
 
 ---
 
@@ -151,7 +151,7 @@ PR은 브랜치의 **커밋 1개**를 그대로 반영하므로, 커밋의 heade
 
 - **PR 제목**: 커밋의 header (예: `fix: 결제 금액 계산 오류 수정`)
 - **body**: 커밋의 body — 오류 원인 및 수정 내용
-- **footer**: 커밋의 footer — Milestone 없이 `<브랜치명>-<이슈번호>` 형식으로 작성 (예: `main-7`)
+- **footer**: 커밋의 footer — `fix #<이슈번호>` 형식으로 작성 (예: `fix #7`), PR 머지 시 Issue 자동 종료
 
 ### dev 동기화
 
