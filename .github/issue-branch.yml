@@ -2,11 +2,11 @@ mode: auto
 branchName: ${issue.number}
 
 branches:
-  - label: enhancement
-    name: dev
-    prefix: feature/dev-
+  - label: hotfix
+    name: main
+    prefix: hotfix/main-
 
-  - label: common
+  - label: enhancement
     name: dev
     prefix: feature/dev-
 
@@ -15,9 +15,9 @@ branches:
     prefix: feature/dev-
 
   - label: bug
-    name: main
-    prefix: hotfix/main-
+    name: dev
+    prefix: feature/dev-
 
-  - label: hotfix
-    name: main
-    prefix: hotfix/main-
+  - label: refactor
+    name: dev
+    prefix: feature/dev-
