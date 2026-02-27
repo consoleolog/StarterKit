@@ -82,21 +82,27 @@ PR은 브랜치의 **커밋 1개**를 그대로 반영하므로, 커밋의 heade
 
 ## dev → main 배포
 
-`dev`의 개발이 완료되어 운영에 반영할 때는 **Fast-Forward 병합 + Git Tag** 방식을 사용합니다.
+`dev`의 개발이 완료되어 운영에 반영할 때는 **PR + Rebase Merge + Git Tag** 방식을 사용합니다.
 
-> 가장 추천하는 방법입니다. `dev`의 깔끔한 선형 히스토리를 `main`에도 똑같이 유지하는 전략입니다.
+### 배포 흐름
 
-**방식**: `main` 브랜치가 단순히 `dev` 브랜치의 최신 커밋을 가리키도록 업데이트(`--ff-only`)합니다.
+1. **PR 생성**: `dev` → `main` 으로 PR을 생성합니다.
+2. **리뷰 및 승인**: 배포 범위와 변경사항을 최종 확인합니다.
+3. **Rebase Merge**: GitHub UI에서 **"Rebase and merge"** 로 병합합니다.
+4. **Git Tag**: 배포 시점을 태그로 기록합니다.
 
-**장점**: Git 그래프가 곁가지 하나 없이 완벽한 일직선을 유지합니다.
+### Pull Request
 
-**보완점**: 병합 커밋(Merge Commit)이 생성되지 않으므로, "어디서부터 어디까지가 이번 배포 버전인지"를 그래프 모양만으로는 알기 어렵습니다. 따라서 병합 직후 반드시 **Git Tag(예: v1.2.0)** 를 달아서 배포 시점을 명시적으로 기록해야 합니다.
+- **PR 제목**: `release: v<MAJOR.MINOR.PATCH>` (예: `release: v1.2.0`)
+- **body**: 이번 배포에 포함된 변경사항 요약
 
-```bash
-git checkout main
-git merge dev --ff-only
-git tag -a v1.2.0 -m "Release version 1.2.0"
-```
+### Rebase Merge
+
+Rebase and merge 방식으로 병합하면 `dev`의 커밋들이 `main` 위에 그대로 재적용되어 **선형 히스토리**를 유지합니다.
+
+1. PR 페이지 하단 Merge 버튼 옆 드롭다운 클릭
+2. **"Rebase and merge"** 선택
+3. Merge 실행
 
 ### Git Tag 관리
 
